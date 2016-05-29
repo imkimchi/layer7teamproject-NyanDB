@@ -13,6 +13,11 @@ int main(int argc, char *argv[]){
     socklen_t len;
     char recv_query[30];
 
+    if(argc < 2){
+      puts("Usage: ./server -p port");
+      exit(1);
+    }
+
     server = socket(PF_INET, SOCK_STREAM, 0);
     memset(&s_addr, 0, sizeof(s_addr));
     s_addr.sin_addr.s_addr = htonl(INADDR_ANY);
