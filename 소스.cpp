@@ -39,6 +39,7 @@ void delall(node *head);
 void search(list *head);
 void finddata(node *head);
 void delnode(list *head);
+node *findnode(node *head);
 void killdata(node **head, node **tail);
 
 int main(void)
@@ -49,11 +50,11 @@ int main(void)
 	head = tail = current = NULL;
 	while (1)
 	{
-		puts("[1] Å×ÀÌºí »ý¼º");
-		puts("[2] Å×ÀÌºí ÆíÁý");
-		puts("[3] Å×ÀÌºí Ãâ·Â");
-		puts("[4] Å×ÀÌºí »èÁ¦");
-		puts("[5] Á¾·á");
+		puts("[1] í…Œì´ë¸” ìƒì„±");
+		puts("[2] í…Œì´ë¸” íŽ¸ì§‘");
+		puts("[3] í…Œì´ë¸” ì¶œë ¥");
+		puts("[4] í…Œì´ë¸” ì‚­ì œ");
+		puts("[5] ì¢…ë£Œ");
 		scanf("%d%*c", &mode);
 		if (mode == 1)
 		{
@@ -64,13 +65,13 @@ int main(void)
 		{
 			while (1)
 			{
-				puts("[1] ÀÔ·Â");
-				puts("[2] °Ë»ö");
-				puts("[3] »èÁ¦");
-				puts("[4] ¼öÁ¤");
-				puts("[5] »ðÀÔ");
-				puts("[6] Ãâ·Â");
-				puts("[7] µÇµ¹¾Æ°¡±â");
+				puts("[1] ìž…ë ¥");
+				puts("[2] ê²€ìƒ‰");
+				puts("[3] ì‚­ì œ");
+				puts("[4] ìˆ˜ì •");
+				puts("[5] ì‚½ìž…");
+				puts("[6] ì¶œë ¥");
+				puts("[7] ë˜ëŒì•„ê°€ê¸°");
 				scanf("%d", &mode2);
 				if (mode2 == 1)
 				{
@@ -128,7 +129,7 @@ list *makelist(void)
 	list *temp;
 	temp = (list*)calloc(1, sizeof(list));
 	temp->i = 1;
-	puts("Å×ÀÌºíÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	puts("í…Œì´ë¸”ì˜ ì´ë¦„ì„ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	scanf("%s%*c", temp->tname);
 	return temp;
 }
@@ -151,7 +152,7 @@ void inputtable(list *head)
 	temp = findtable(head);
 	if (temp == NULL)
 	{
-		puts("ÀÔ·ÂÇÑ Å×ÀÌºíÀÌ ¾ø½À´Ï´Ù.");
+		puts("ìž…ë ¥í•œ í…Œì´ë¸”ì´ ì—†ìŠµë‹ˆë‹¤.");
 	}
 	else
 	{
@@ -163,7 +164,7 @@ void inputtable(list *head)
 list *findtable(list *head)
 {
 	char tname[40];
-	puts("Å×ÀÌºíÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	puts("í…Œì´ë¸”ì˜ ì´ë¦„ì„ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	scanf("%s%*c", tname);
 	while (head)
 	{
@@ -179,11 +180,11 @@ node *makedata(list *head)
 	node *temp;
 	temp = (node *)calloc(1, sizeof(node));
 	temp->id = head->i++;
-	puts("ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	puts("ì´ë¦„ì„ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	scanf("%s%*c", temp->name);
-	puts("¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	puts("ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	scanf("%s%*c", temp->number);
-	puts("ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	puts("ì£¼ì†Œë¥¼ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	scanf("%s%*c", temp->addr);
 	return temp;
 }
@@ -204,7 +205,7 @@ void printtable(node *head)
 {
 	while (head)
 	{
-		printf("id : %d ÀÌ¸§ : %s ¹øÈ£ : %s ÁÖ¼Ò : %s\n", head->id, head->name, head->number, head->addr);
+		printf("id : %d ì´ë¦„ : %s ë²ˆí˜¸ : %s ì£¼ì†Œ : %s\n", head->id, head->name, head->number, head->addr);
 		head = head->next;
 	}
 }
@@ -221,7 +222,7 @@ void printall(list *head)
 		printf("\"%s\" :\n{\n", head->tname);
 		printtable(head->head);
 		printf("}\n");
-		head = head -> next;
+		head = head->next;
 	}
 }
 void killlist(list **head, list **tail)
@@ -230,7 +231,7 @@ void killlist(list **head, list **tail)
 	temp = findtable(*head);
 	if (temp == NULL)
 	{
-		puts("Å×ÀÌºíÀÌ ¾ø½À´Ï´Ù.");
+		puts("í…Œì´ë¸”ì´ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	else if (temp == *head)
@@ -269,25 +270,25 @@ void delall(node *head)
 void search(list *head)
 {
 	list *temp;
-	
+
 	temp = findtable(head);
 	finddata(temp->head);
 }
 void finddata(node *head)
 {
 	char name[20];
-	puts("°Ë»öÇÒ ÀÚ·áÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	puts("ê²€ìƒ‰í•  ìžë£Œì˜ ì´ë¦„ì„ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	scanf("%s%*c", name);
 	while (head)
 	{
 		if (strcmp(head->name, name) == 0)
 		{
-			printf("%d : ÀÌ¸§ : %s ¹øÈ£ : %s ÁÖ¼Ò : %s\n", head->id, head->name, head->number, head->addr);
+			printf("%d : ì´ë¦„ : %s ë²ˆí˜¸ : %s ì£¼ì†Œ : %s\n", head->id, head->name, head->number, head->addr);
 			return;
 		}
 		head = head->next;
 	}
-	puts("°Ë»öÇÏ´Â ÀÚ·á°¡ ¾ø½À´Ï´Ù.");
+	puts("ê²€ìƒ‰í•˜ëŠ” ìžë£Œê°€ ì—†ìŠµë‹ˆë‹¤.");
 }
 void delnode(list *head)
 {
@@ -295,7 +296,47 @@ void delnode(list *head)
 	temp = findtable(head);
 	killdata(&temp->head, &temp->tail);
 }
+node *findnode(node *head)
+{
+	char buf[20];
+	scanf("%s", buf);
+	while (head)
+	{
+		if (strcmp(buf, head->name) == 0)
+			return head;
+		else
+			head = head->next;
+	}
+	return NULL;
+}
 void killdata(node **head, node **tail)
 {
-
+	node *temp;
+	temp = findnode(*head);
+	if (temp == NULL)
+	{
+		puts("ì°¾ëŠ” ìžë£Œê°€ ì—†ìŠµë‹ˆë‹¤.");
+	}
+	else if(temp == *head)
+	{
+		(*head) = (*head)->next;
+		if(*head != NULL)
+		(*head)->prev = NULL;
+		free(temp);
+	}
+	else if (temp == *tail)
+	{
+		(*tail) = (*tail)->prev;
+		(*tail)->next = NULL;
+		free(temp);
+	}
+	else
+	{
+		if (temp->prev != NULL && temp->next != NULL)
+		{
+			temp->prev->next = temp->next;
+			temp->next->prev = temp->prev;
+		}
+		free(temp);
+	}
 }
