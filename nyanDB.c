@@ -10,7 +10,7 @@
 int main(int argc, char *argv[]){
   int client, len, n;
   struct sockaddr_in c_addr;
-  char query[30];
+  char query[300];
   char recv[30];
 
   if(argc < 2){
@@ -46,13 +46,12 @@ int main(int argc, char *argv[]){
   while(1){
     printf("nyandb> ");
     memset(query, 0, sizeof(query));
-    scanf("%s", query);
-    write(client, query, 30);
+    fgets(query, sizeof(char)*300, stdin);
+    write(client, query, 300);
 
     if((n = read(client, recv, sizeof(recv))) < 0){
         exit(1);
     }
-    printf("\nSent: %s \n\n", recv);
   }
 
   close(client);
