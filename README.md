@@ -2,4 +2,6 @@
 
 ![](http://i.imgur.com/of5Xk8c.png)
 
-This project has already wrecked
+NyanDB is a micro-database system based on C.
+
+That is What we were trying to make
